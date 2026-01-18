@@ -96,6 +96,89 @@
     </main>
 
     <!-- Scripts -->
+    <script>
+        // 1. 定义多语言文本映射（核心：把所有需要切换的文本按语言分类）
+        const langTexts = {
+            vi: {
+                siteTitle: "Cửa hàng đồ gia dụng nhỏ",
+                categoryTitle: "Danh mục sản phẩm",
+                allProducts: "Tất cả sản phẩm",
+                emptyText: "Không có sản phẩm"
+            },
+            th: {
+                siteTitle: "ร้านขายเครื่องใช้ไฟฟ้าขนาดเล็ก",
+                categoryTitle: "หมวดหมู่สินค้า",
+                allProducts: "สินค้าทั้งหมด",
+                emptyText: "ไม่มีสินค้า"
+            },
+            en: {
+                siteTitle: "Small Appliances Store",
+                categoryTitle: "Product Categories",
+                allProducts: "All Products",
+                emptyText: "No products available"
+            },
+            id: {
+                siteTitle: "Toko Alat Rumah Tangga Kecil",
+                categoryTitle: "Kategori Produk",
+                allProducts: "Semua Produk",
+                emptyText: "Tidak ada produk"
+            },
+            // 默认繁体中文
+            zh: {
+                siteTitle: "小家電專賣",
+                categoryTitle: "商品分類",
+                allProducts: "全部商品",
+                emptyText: "暫無商品"
+            }
+        };
+
+        // 2. 获取URL中的语言参数（?lang=xxx）
+        function getLangFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            // 验证语言参数是否有效，无效则用默认zh
+            return ['vi', 'th', 'en', 'id'].includes(lang) ? lang : 'zh';
+        }
+
+        // 3. 根据语言更新页面文本
+        function updatePageText(lang) {
+            const texts = langTexts[lang];
+            // 更新页面元素文本
+            document.getElementById('siteTitle').textContent = texts.siteTitle;
+            document.getElementById('categoryTitle').textContent = texts.categoryTitle;
+            document.querySelector('.category-btn[data-category="all"]').textContent = texts.allProducts;
+            document.getElementById('emptyText').textContent = texts.emptyText;
+            // 更新当前语言显示
+            const langLabels = { vi: '🇻🇳 VI', th: '🇹🇭 TH', en: '🇵🇭 EN', id: '🇮🇩 ID', zh: '🇹🇼 ZH' };
+            document.getElementById('currentLang').textContent = langLabels[lang];
+        }
+
+        // 4. 语言菜单交互（展开/收起）
+        document.getElementById('langBtn').addEventListener('click', function() {
+            const langMenu = document.getElementById('langMenu');
+            langMenu.classList.toggle('hidden');
+        });
+
+        // 点击页面其他区域收起语言菜单
+        document.addEventListener('click', function(e) {
+            const langBtn = document.getElementById('langBtn');
+            const langMenu = document.getElementById('langMenu');
+            if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+                langMenu.classList.add('hidden');
+            }
+        });
+
+        // 5. 页面加载时初始化语言
+        window.onload = function() {
+            const currentLang = getLangFromUrl();
+            updatePageText(currentLang);
+            
+            // 隐藏loading（如果暂时没有商品数据，先隐藏loading显示空状态）
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('emptyState').classList.remove('hidden');
+        };
+    </script>
+    <!-- 保留原有JS文件（确保仓库里有这些文件，路径正确） -->
     <script src="js/affiliate-tracker.js"></script>
     <script src="js/shop.js"></script>
 </body>
