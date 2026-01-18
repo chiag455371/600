@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | 歡迎光臨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .language-card {
+            transition: all 0.3s ease;
+        }
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .flag-icon {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full">
+        <!-- Logo / Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-white mb-4">
+                <i class="fas fa-store mr-3"></i>小家電專賣
+            </h1>
+            <p class="text-xl text-white opacity-90">請選擇您的語言 / Choose Your Language</p>
+        </div>
+
+        <!-- Language Selection Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 越南語 -->
+            <a href="shop.html?lang=vi" class="language-card bg-white rounded-2xl p-8 text-center cursor-pointer shadow-xl">
+                <div class="flag-icon mb-4">🇻🇳</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Tiếng Việt</h3>
+                <p class="text-gray-600">越南語</p>
+            </a>
+
+            <!-- 泰語 -->
+            <a href="shop.html?lang=th" class="language-card bg-white rounded-2xl p-8 text-center cursor-pointer shadow-xl">
+                <div class="flag-icon mb-4">🇹🇭</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">ภาษาไทย</h3>
+                <p class="text-gray-600">泰語</p>
+            </a>
+
+            <!-- 英語/菲律賓 -->
+            <a href="shop.html?lang=en" class="language-card bg-white rounded-2xl p-8 text-center cursor-pointer shadow-xl">
+                <div class="flag-icon mb-4">🇵🇭</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">English</h3>
+                <p class="text-gray-600">英語/菲律賓語</p>
+            </a>
+
+            <!-- 印尼語 -->
+            <a href="shop.html?lang=id" class="language-card bg-white rounded-2xl p-8 text-center cursor-pointer shadow-xl">
+                <div class="flag-icon mb-4">🇮🇩</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Bahasa Indonesia</h3>
+                <p class="text-gray-600">印尼語</p>
+            </a>
+        </div>
+
+        <!-- Admin Link -->
+        <div class="text-center mt-12">
+            <a href="admin/" class="text-white opacity-70 hover:opacity-100 text-sm">
+                <i class="fas fa-lock mr-2"></i>管理員登入
+            </a>
+        </div>
+    </div>
+
+    <script src="js/affiliate-tracker.js"></script>
+</body>
+</html>
